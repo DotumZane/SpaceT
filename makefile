@@ -4,10 +4,10 @@ CFLAGS = -Wall -c
 LFLAGS = -Wall
 
 main : $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o  
+	$(CC) $(LFLAGS) $(OBJS) -o SpaceT -lsfml-graphics -lsfml-window -lsfml-system
 
-main.o : main.cpp main.h
+main.o : main.cpp
 	$(CC) $(CFLAGS) main.cpp
 
 clean :
-	rm -f *.o hello
+	rm -f *.o SpaceT

@@ -4,22 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-/*namespace sf
-{
-    class RenderWindow;
-}*/
-
-class tetrisGameManager
-{
- public:
-        tetrisGameManager();
-        void moveBlock();
-        void drawGrid(sf::RenderWindow& window);
- private:
-	int blockGrid[10][24];
-	int movingx[4];
-	int movingy[4];
-	enum BlockStatus
+enum BlockStatus
 	{
         Empty,
         Cyan,
@@ -30,6 +15,24 @@ class tetrisGameManager
         Red,
         Purple
 	};
+
+class tetrisGameManager
+{
+private:
+    BlockStatus currentBlock;
+	int blockGrid[10][24];
+	int movingx[4];
+	int movingy[4];
+	bool horizontalCooldown;
+	bool verticalCooldown;
+	std::chrono::time_point<std::chrono::system_clock> end_time;
+    void moveBlock(BlockStatus status);
+    void drawGrid(sf::RenderWindow& window);
+ public:
+    tetrisGameManager();
+    void createBlock(BlockStatus status);
+    void updateGrid(sf::RenderWindow& window);
+
 };
 
 #endif // TETRISGAMEMANAGER_H

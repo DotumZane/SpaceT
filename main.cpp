@@ -9,6 +9,7 @@ int main()
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Space Tetris");
     tetrisGameManager gameManager;
+    gameManager.createBlock(Orange);
 
     while (window.isOpen())
     {
@@ -25,8 +26,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // Draw tetris grid
-        gameManager.moveBlock();
-        gameManager.drawGrid(window);
+        gameManager.updateGrid(window);
 
         // Update the window
         window.display();

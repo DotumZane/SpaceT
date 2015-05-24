@@ -13,40 +13,119 @@ tetrisGameManager::tetrisGameManager()
         movingx[x] = (x+3);
         movingy[x] = 0;
     }
+    horizontalCooldown = false;
+    verticalCooldown = false;
+    end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
 }
 
-void tetrisGameManager::moveBlock()
+void tetrisGameManager::createBlock(BlockStatus status)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
-    sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && movingx[0] == 0 ||
-    sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && movingx[3] == 9 ||
-    !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    switch(status)
     {
+    case Cyan:
         for(int x = 0; x < 4; x++)
         {
-            blockGrid[movingx[x]][movingy[x]] = Cyan;
+            movingx[x] = x + 3;
+            movingy[x] = 0;
         }
+        break;
+    case Yellow:
+        for(int x = 0; x < 4; x++)
+        {
+            if(x < 3)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 1;
+            }
+            else
+            {
+                movingx[x] = 5;
+                movingy[x] = 0;
+            }
+        }
+        break;
+    case Orange:
+        for(int x = 0; x < 4; x++)
+        {
+            if(x < 3)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 0;
+            }
+            else
+            {
+                movingx[x] = 5;
+                movingy[x] = 1;
+            }
+        }
+        break;
+    /*case Blue:
+    block.setFillColor(sf::Color::Blue);
+    block.setOutlineColor(sf::Color(23, 19, 138, 255));
+        break;
+    case Green:
+    block.setFillColor(sf::Color::Green);
+    block.setOutlineColor(sf::Color(42, 183, 37, 255));
+        break;
+    case Red:
+    block.setFillColor(sf::Color::Red);
+    block.setOutlineColor(sf::Color(195, 25, 30, 255));
+        break;
+    case Purple:
+    block.setFillColor(sf::Color(239, 68, 245, 255));
+    block.setOutlineColor(sf::Color(181, 69, 195, 255));
+        break;*/
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    currentBlock = status;
+}
+
+void tetrisGameManager::moveBlock(BlockStatus status)
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !horizontalCooldown &&
+    !(movingx[0] == 0 || movingx[1] == 0 || movingx[2] == 0 || movingx[3] == 0))
     {
+        horizontalCooldown = true;
         for(int x = 0; x < 4; x++)
         {
             blockGrid[movingx[x]][movingy[x]] = Empty;
             movingx[x] = movingx[x] - 1;
-            blockGrid[movingx[x]][movingy[x]] = Cyan;
+            blockGrid[movingx[x]][movingy[x]] = status;
         }
 
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !horizontalCooldown &&
+    !(movingx[0] == 9 || movingx[1] == 9 || movingx[2] == 9 || movingx[3] == 9))
     {
+        horizontalCooldown = true;
         for(int x = 0; x < 4; x++)
         {
             blockGrid[movingx[x]][movingy[x]] = Empty;
             movingx[x] = movingx[x] + 1;
-            blockGrid[movingx[x]][movingy[x]] = Cyan;
+            blockGrid[movingx[x]][movingy[x]] = status;
         }
-
     }
+    else
+    {
+        if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            horizontalCooldown = false;
+        for(int x = 0; x < 4; x++)
+        {
+            blockGrid[movingx[x]][movingy[x]] = status;
+        }
+    }
+    if(end_time < std::chrono::system_clock::now() || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !verticalCooldown)
+    {
+        for(int x = 0; x < 4; x++)
+        {
+            blockGrid[movingx[x]][movingy[x]] = Empty;
+            movingy[x] = movingy[x] + 1;
+            blockGrid[movingx[x]][movingy[x]] = status;
+        }
+        end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
+        verticalCooldown = true;
+    }
+    else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        verticalCooldown = false;
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)
@@ -96,4 +175,10 @@ void tetrisGameManager::drawGrid(sf::RenderWindow& window)
             window.draw(block);
         }
     }
+}
+
+void tetrisGameManager::updateGrid(sf::RenderWindow& window)
+{
+    moveBlock(currentBlock);
+    drawGrid(window);
 }

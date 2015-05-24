@@ -151,7 +151,28 @@ void tetrisGameManager::moveBlock(BlockStatus status)
 
 void tetrisGameManager::checkLines()
 {
-
+    int blocks = 0;
+    bool lines[24];
+    int times = 0;
+    for(int y = 0; y < 24; y++)
+        lines[y] = false;
+    for(int y = 0; y < 24; y++)
+    {
+        for(int x = 0; x < 10; x++)
+        {
+            if(blockGrid[x][y] != Empty)
+                blocks++;
+        }
+        if(blocks == 10)
+            lines[y] = true;
+    }
+    for(int y = 23; y  > 0; y--)
+    {
+        if(lines[y])
+            times++;
+        for(int x = 0; x < 10; x++)
+            blockGrid[x][y] = blockGrid[x][y - times];
+    }
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)

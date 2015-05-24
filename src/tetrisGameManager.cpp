@@ -202,7 +202,30 @@ void tetrisGameManager::moveBlock(BlockStatus status)
         }
         else
         {
-            createBlock(Cyan);
+            switch(rand() % 7 + 1)
+            {
+            case 1:
+                createBlock(Cyan);
+                break;
+            case 2:
+                createBlock(Yellow);
+                break;
+            case 3:
+                createBlock(Orange);
+                break;
+            case 4:
+                createBlock(Blue);
+                break;
+            case 5:
+                createBlock(Green);
+                break;
+            case 6:
+                createBlock(Red);
+                break;
+            case 7:
+                createBlock(Purple);
+                break;
+            };
             checkLines();
         }
         end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);

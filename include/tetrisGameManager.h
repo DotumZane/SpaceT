@@ -8,16 +8,16 @@ namespace sf
     class RenderWindow;
 }
 
-
 class tetrisGameManager
 {
  public:
         tetrisGameManager();
-        void drawLogic(sf::RenderWindow& app);
+        void drawLogic(sf::RenderWindow& window);
  private:
 	int blockGrid[10][24];
-	enum BlockColor
+	enum BlockStatus
 	{
+        Empty,
         Cyan,
         Yellow,
         Orange,

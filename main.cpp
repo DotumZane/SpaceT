@@ -1,9 +1,12 @@
 #include <SFML/Graphics.hpp>
 
+const int screenWidth = 1024;
+const int screenHeight = 760;
+
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1024, 760), "Space Tetris");
+    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Space Tetris");
 
     while (window.isOpen())
     {

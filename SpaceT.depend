@@ -13,3 +13,10 @@
 
 1432430706 /home/lance/Programming/SpaceT/include/tetrisBlocks.h
 
+1432430455 source:/home/lance/Programming/SpaceT/src/tetrisGameManager.cpp
+	"tetrisGameManager.h"
+	<SFML/Graphics/RenderWindow.hpp>
+
+1432434944 /home/lance/Programming/SpaceT/include/tetrisGameManager.h
+	<chrono>
+

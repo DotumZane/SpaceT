@@ -9,7 +9,7 @@ int main()
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Space Tetris");
     tetrisGameManager gameManager;
-    gameManager.createBlock(Blue);
+    gameManager.createBlock(Purple);
 
     while (window.isOpen())
     {
@@ -18,7 +18,7 @@ int main()
         while (window.pollEvent(event))
         {
             // Close window : exit
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 window.close();
         }
 

@@ -76,11 +76,22 @@ void tetrisGameManager::createBlock(BlockStatus status)
     case Red:
     block.setFillColor(sf::Color::Red);
     block.setOutlineColor(sf::Color(195, 25, 30, 255));
-        break;
-    case Purple:
-    block.setFillColor(sf::Color(239, 68, 245, 255));
-    block.setOutlineColor(sf::Color(181, 69, 195, 255));
         break;*/
+    case Purple:
+        for(int x = 0; x < 4; x++)
+        {
+            if(x != 3)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 1;
+            }
+            else
+            {
+                movingx[x] = x + 1;
+                movingy[x] = 0;
+            }
+        }
+        break;
     }
     currentBlock = status;
 }
@@ -88,7 +99,19 @@ void tetrisGameManager::createBlock(BlockStatus status)
 void tetrisGameManager::moveBlock(BlockStatus status)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !horizontalCooldown &&
-    !(movingx[0] == 0 || movingx[1] == 0 || movingx[2] == 0 || movingx[3] == 0))
+    (blockGrid[movingx[0] - 1][movingy[0]] == Empty ||        (movingy[0] == movingy[1] && movingx[0] - 1 == movingx[1]) ||
+                                                            (movingy[0] == movingy[2] && movingx[0] - 1 == movingx[2]) ||
+                                                            (movingy[0] == movingy[3] && movingx[0] - 1 == movingx[3]))
+         &&(blockGrid[movingx[1] - 1][movingy[1]] == Empty || (movingy[1] == movingy[0] && movingx[1] - 1 == movingx[0]) ||
+                                                            (movingy[1] == movingy[2] && movingx[1] - 1 == movingx[2]) ||
+                                                            (movingy[1] == movingy[3] && movingx[1] - 1 == movingx[3]))
+         &&(blockGrid[movingx[2] - 1][movingy[2]] == Empty || (movingy[2] == movingy[0] && movingx[2] - 1 == movingx[0]) ||
+                                                            (movingy[2] == movingy[1] && movingx[2] - 1 == movingx[1]) ||
+                                                            (movingy[2] == movingy[3] && movingx[2] - 1 == movingx[3]))
+         &&(blockGrid[movingx[3] - 1][movingy[3]] == Empty || (movingy[3] == movingy[0] && movingx[3] - 1 == movingx[0]) ||
+                                                            (movingy[3] == movingy[1] && movingx[3] - 1 == movingx[1]) ||
+                                                            (movingy[3] == movingy[2] && movingx[3] - 1 == movingx[2]))
+    && !(movingx[0] == 0 || movingx[1] == 0 || movingx[2] == 0 || movingx[3] == 0))
     {
         horizontalCooldown = true;
         for(int x = 0; x < 4; x++)
@@ -100,7 +123,19 @@ void tetrisGameManager::moveBlock(BlockStatus status)
 
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !horizontalCooldown &&
-    !(movingx[0] == 9 || movingx[1] == 9 || movingx[2] == 9 || movingx[3] == 9))
+    (blockGrid[movingx[0] + 1][movingy[0]] == Empty ||        (movingy[0] == movingy[1] && movingx[0] + 1 == movingx[1]) ||
+                                                            (movingy[0] == movingy[2] && movingx[0] + 1 == movingx[2]) ||
+                                                            (movingy[0] == movingy[3] && movingx[0] + 1 == movingx[3]))
+         &&(blockGrid[movingx[1] + 1][movingy[1]] == Empty || (movingy[1] == movingy[0] && movingx[1] + 1 == movingx[0]) ||
+                                                            (movingy[1] == movingy[2] && movingx[1] + 1 == movingx[2]) ||
+                                                            (movingy[1] == movingy[3] && movingx[1] + 1 == movingx[3]))
+         &&(blockGrid[movingx[2] + 1][movingy[2]] == Empty || (movingy[2] == movingy[0] && movingx[2] + 1 == movingx[0]) ||
+                                                            (movingy[2] == movingy[1] && movingx[2] + 1 == movingx[1]) ||
+                                                            (movingy[2] == movingy[3] && movingx[2] + 1 == movingx[3]))
+         &&(blockGrid[movingx[3] + 1][movingy[3]] == Empty || (movingy[3] == movingy[0] && movingx[3] + 1 == movingx[0]) ||
+                                                            (movingy[3] == movingy[1] && movingx[3] + 1 == movingx[1]) ||
+                                                            (movingy[3] == movingy[2] && movingx[3] + 1 == movingx[2]))
+    && !(movingx[0] == 9 || movingx[1] == 9 || movingx[2] == 9 || movingx[3] == 9))
     {
         horizontalCooldown = true;
         for(int x = 0; x < 4; x++)
@@ -170,6 +205,7 @@ void tetrisGameManager::checkLines()
         }
         if(blocks == 10)
             lines[y] = true;
+        blocks = 0;
     }
     for(int y = 23; y  > 0; y--)
     {

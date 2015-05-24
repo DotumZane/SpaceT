@@ -10,7 +10,8 @@ tetrisGameManager::tetrisGameManager()
     }
     horizontalCooldown = false;
     verticalCooldown = false;
-    end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
+    end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(250);
+    gameOver = false;
 }
 
 void tetrisGameManager::createBlock(BlockStatus status)
@@ -59,12 +60,12 @@ void tetrisGameManager::createBlock(BlockStatus status)
         {
             if(x < 2)
             {
-                movingx[x] = x + 3;
+                movingx[x] = x + 4;
                 movingy[x] = 0;
             }
             else
             {
-                movingx[x] = x + 1;
+                movingx[x] = x + 2;
                 movingy[x] = 1;
             }
         }
@@ -118,7 +119,7 @@ void tetrisGameManager::createBlock(BlockStatus status)
     currentBlock = status;
 }
 
-void tetrisGameManager::moveBlock(BlockStatus status)
+bool tetrisGameManager::moveBlock(BlockStatus status)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !horizontalCooldown &&
     (blockGrid[movingx[0] - 1][movingy[0]] == Empty ||        (movingy[0] == movingy[1] && movingx[0] - 1 == movingx[1]) ||
@@ -226,15 +227,17 @@ void tetrisGameManager::moveBlock(BlockStatus status)
                 createBlock(Purple);
                 break;
             };
-            checkLines();
+            if(!checkLines())
+                return false;
         }
-        end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
+        end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(250);
     }
     else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         verticalCooldown = false;
+    return true;
 }
 
-void tetrisGameManager::checkLines()
+bool tetrisGameManager::checkLines()
 {
     int blocks = 0;
     bool lines[24];
@@ -259,6 +262,10 @@ void tetrisGameManager::checkLines()
         for(int x = 0; x < 10; x++)
             blockGrid[x][y] = blockGrid[x][y - times];
     }
+    if(blockGrid[4][0] != Empty || blockGrid[5][0] != Empty ||
+       blockGrid[6][0] != Empty || blockGrid[7][0] != Empty)
+        return false;
+    return true;
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)
@@ -312,6 +319,8 @@ void tetrisGameManager::drawGrid(sf::RenderWindow& window)
 
 void tetrisGameManager::updateGrid(sf::RenderWindow& window)
 {
-    moveBlock(currentBlock);
+    if(!gameOver)
+        if(!moveBlock(currentBlock))
+            gameOver = true;
     drawGrid(window);
 }

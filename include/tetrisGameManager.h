@@ -23,12 +23,13 @@ private:
 	int blockGrid[10][24];
 	int movingx[4];
 	int movingy[4];
+	bool gameOver;
 	bool horizontalCooldown;
 	bool verticalCooldown;
 	std::chrono::time_point<std::chrono::system_clock> end_time;
-    void moveBlock(BlockStatus status);
+    bool moveBlock(BlockStatus status);
     void drawGrid(sf::RenderWindow& window);
-    void checkLines();
+    bool checkLines();
  public:
     tetrisGameManager();
     void createBlock(BlockStatus status);

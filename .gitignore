@@ -1,8 +1,11 @@
 # Object files
 *.o
 
-# Executable
+# Executable and library files
 SpaceT
+*.dll
+*.lib
+*.a
 
 # Emacs backup files
 *~

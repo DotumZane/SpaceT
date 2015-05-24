@@ -28,6 +28,7 @@ private:
 	std::chrono::time_point<std::chrono::system_clock> end_time;
     void moveBlock(BlockStatus status);
     void drawGrid(sf::RenderWindow& window);
+    void checkLines();
  public:
     tetrisGameManager();
     void createBlock(BlockStatus status);

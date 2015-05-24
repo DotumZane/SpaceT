@@ -59,11 +59,22 @@ void tetrisGameManager::createBlock(BlockStatus status)
             }
         }
         break;
-    /*case Blue:
-    block.setFillColor(sf::Color::Blue);
-    block.setOutlineColor(sf::Color(23, 19, 138, 255));
+    case Blue:
+        for(int x = 0; x < 4; x++)
+        {
+            if(x < 2)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 0;
+            }
+            else
+            {
+                movingx[x] = x+1;
+                movingy[x] = 1;
+            }
+        }
         break;
-    case Green:
+    /*case Green:
     block.setFillColor(sf::Color::Green);
     block.setOutlineColor(sf::Color(42, 183, 37, 255));
         break;
@@ -115,17 +126,32 @@ void tetrisGameManager::moveBlock(BlockStatus status)
     }
     if(end_time < std::chrono::system_clock::now() || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !verticalCooldown)
     {
-        for(int x = 0; x < 4; x++)
+        if(blockGrid[movingx[0]][movingy[0]+1] == Empty && blockGrid[movingx[1]][movingy[1]+1] == Empty &&
+           blockGrid[movingx[2]][movingy[2]+1] == Empty && blockGrid[movingx[3]][movingy[3]+1] == Empty &&
+           movingy[0] < 23 && movingy[1] < 23 && movingy[2] < 23 && movingy[3] < 23)
         {
-            blockGrid[movingx[x]][movingy[x]] = Empty;
-            movingy[x] = movingy[x] + 1;
-            blockGrid[movingx[x]][movingy[x]] = status;
+            for(int x = 0; x < 4; x++)
+            {
+                blockGrid[movingx[x]][movingy[x]] = Empty;
+                movingy[x] = movingy[x] + 1;
+                blockGrid[movingx[x]][movingy[x]] = status;
+            }
+            verticalCooldown = true;
+        }
+        else
+        {
+            createBlock(Cyan);
+            checkLines();
         }
         end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
-        verticalCooldown = true;
     }
     else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         verticalCooldown = false;
+}
+
+void tetrisGameManager::checkLines()
+{
+
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)

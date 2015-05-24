@@ -8,11 +8,6 @@ tetrisGameManager::tetrisGameManager()
             blockGrid[x][y] = Empty;
         }
     }
-    for(int x = 0; x < 4; x++)
-    {
-        movingx[x] = (x+3);
-        movingy[x] = 0;
-    }
     horizontalCooldown = false;
     verticalCooldown = false;
     end_time = std::chrono::system_clock::now() + std::chrono::seconds(1);
@@ -126,9 +121,19 @@ void tetrisGameManager::moveBlock(BlockStatus status)
     }
     if(end_time < std::chrono::system_clock::now() || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !verticalCooldown)
     {
-        if(blockGrid[movingx[0]][movingy[0]+1] == Empty && blockGrid[movingx[1]][movingy[1]+1] == Empty &&
-           blockGrid[movingx[2]][movingy[2]+1] == Empty && blockGrid[movingx[3]][movingy[3]+1] == Empty &&
-           movingy[0] < 23 && movingy[1] < 23 && movingy[2] < 23 && movingy[3] < 23)
+        if((blockGrid[movingx[0]][movingy[0]+1] == Empty || (movingy[0] + 1 == movingy[1] && movingx[0] == movingx[1]) ||
+                                                            (movingy[0] + 1 == movingy[2] && movingx[0] == movingx[2]) ||
+                                                            (movingy[0] + 1 == movingy[3] && movingx[0] == movingx[3]))
+         &&(blockGrid[movingx[1]][movingy[1]+1] == Empty || (movingy[1] + 1 == movingy[0] && movingx[1] == movingx[0]) ||
+                                                            (movingy[1] + 1 == movingy[2] && movingx[1] == movingx[2]) ||
+                                                            (movingy[1] + 1 == movingy[3] && movingx[1] == movingx[3]))
+         &&(blockGrid[movingx[2]][movingy[2]+1] == Empty || (movingy[2] + 1 == movingy[0] && movingx[2] == movingx[0]) ||
+                                                            (movingy[2] + 1 == movingy[1] && movingx[2] == movingx[1]) ||
+                                                            (movingy[2] + 1 == movingy[3] && movingx[2] == movingx[3]))
+         &&(blockGrid[movingx[3]][movingy[3]+1] == Empty || (movingy[3] + 1 == movingy[0] && movingx[3] == movingx[0]) ||
+                                                            (movingy[3] + 1 == movingy[1] && movingx[3] == movingx[1]) ||
+                                                            (movingy[3] + 1 == movingy[2] && movingx[3] == movingx[2]))
+         && movingy[0] < 23 && movingy[1] < 23 && movingy[2] < 23 && movingy[3] < 23)
         {
             for(int x = 0; x < 4; x++)
             {

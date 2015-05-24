@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="SpaceT" />
+		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -13,11 +14,14 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
+					<Add directory="../Desktop/SFML-2.3/include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
+					<Add directory="../Desktop/SFML-2.3/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,6 +31,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -40,10 +45,17 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="cb.bmp" />
+		<Unit filename="include/playerShip.h" />
+		<Unit filename="include/tetrisBlocks.h" />
+		<Unit filename="include/tetrisGameManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/playerShip.cpp" />
+		<Unit filename="src/tetrisBlocks.cpp" />
+		<Unit filename="src/tetrisGameManager.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

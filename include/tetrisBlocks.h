@@ -6,19 +6,17 @@ class tetrisBlocks
 {
     public:
         tetrisBlocks();
-        void rotate(void);s
-        BlockType Gettype() { return type; }
-        void Settype(BlockType val) { type = val; }
+        void rotate(void);
     protected:
     private:
         enum BlockType
         {
-        linePiece,
-        square,
-        squiggly,
-        reverse_squiggly,
-        l_block,
-        reverse_l_block;
+            linePiece,
+            square,
+            squiggly,
+            reverse_squiggly,
+            l_block,
+            reverse_l_block
         };
         BlockType type;
 };

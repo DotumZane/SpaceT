@@ -1,6 +1,11 @@
 #include "tetrisGameManager.h"
-
+#include <SFML/Graphics/RenderWindow.hpp>
 tetrisGameManager::tetrisGameManager()
 {
-    //ctor
+
+}
+
+void drawLogic(sf::RenderWindow& app)
+{
+
 }

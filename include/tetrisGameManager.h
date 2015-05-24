@@ -1,9 +1,11 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
+#include <chrono>
 namespace sf
 {
     class RenderWindow;
 }
+
 
 class tetrisGameManager
 {

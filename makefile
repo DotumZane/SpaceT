@@ -1,5 +1,5 @@
 CC = g++
-OBJS = main.o
+OBJS = main.o tetrisBlocks.o tetrisGameManager.o
 CFLAGS = -Wall -c
 LFLAGS = -Wall
 
@@ -8,6 +8,12 @@ main : $(OBJS)
 
 main.o : main.cpp
 	$(CC) $(CFLAGS) main.cpp
+
+tetrisBlocks.o : src/tetrisBlocks.cpp include/tetrisBlocks.h
+	$(CC) $(CFLAGS) src/tetrisBlocks.cpp
+
+tetrisGameManager.o : src/tetrisGameManager.cpp include/tetrisGamemanager.h
+	$(CC) $(CFLAGS) src/tetrisGameManager.cpp
 
 clean :
 	rm -f *.o SpaceT

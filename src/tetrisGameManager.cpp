@@ -2,5 +2,5 @@
 
 tetrisGameManager::tetrisGameManager()
 {
-    //ctor
+    
 }

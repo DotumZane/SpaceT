@@ -6,7 +6,7 @@ class tetrisBlocks
 {
     public:
         tetrisBlocks();
-        void rotate(void);
+        void rotate();
     protected:
     private:
         enum BlockType

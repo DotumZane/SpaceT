@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1432432616 source:/home/lance/Programming/SpaceT/main.cpp
+	<SFML/Graphics.hpp>
+
+1432424397 source:/home/lance/Programming/SpaceT/src/playerShip.cpp
+	"playerShip.h"
+
+1432428302 /home/lance/Programming/SpaceT/include/playerShip.h
+	<SFML/Graphics/Sprite.hpp>
+
+1432430390 source:/home/lance/Programming/SpaceT/src/tetrisBlocks.cpp
+	"tetrisBlocks.h"
+
+1432430706 /home/lance/Programming/SpaceT/include/tetrisBlocks.h
+

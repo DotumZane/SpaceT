@@ -3,7 +3,6 @@
 tetrisGameManager::tetrisGameManager()
 {
 
-
 }
 
 void drawLogic(sf::RenderWindow& app)

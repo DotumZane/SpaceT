@@ -1,6 +1,8 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
+
 #include <chrono>
+
 namespace sf
 {
     class RenderWindow;
@@ -9,12 +11,21 @@ namespace sf
 
 class tetrisGameManager
 {
-    public:
+ public:
         tetrisGameManager();
         void drawLogic(sf::RenderWindow& app);
-    protected:
-    private:
-
+ private:
+	int blockGrid[10][24];
+	enum BlockColor
+	{
+        Cyan,
+        Yellow,
+        Orange,
+        Blue,
+        Green,
+        Red,
+        Purple
+	};
 };
 
 #endif // TETRISGAMEMANAGER_H

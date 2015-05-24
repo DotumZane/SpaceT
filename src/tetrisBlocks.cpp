@@ -2,8 +2,9 @@
 
 tetrisBlocks::tetrisBlocks()
 {
+
 }
-void tetrisBlocks::rotate(void)
+void tetrisBlocks::rotate()
 {
 
 }

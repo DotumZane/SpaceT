@@ -9,7 +9,7 @@ int main()
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Space Tetris");
     tetrisGameManager gameManager;
-    gameManager.createBlock(Purple);
+    gameManager.createBlock(Red);
 
     while (window.isOpen())
     {

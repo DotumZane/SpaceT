@@ -64,19 +64,41 @@ void tetrisGameManager::createBlock(BlockStatus status)
             }
             else
             {
-                movingx[x] = x+1;
+                movingx[x] = x + 1;
                 movingy[x] = 1;
             }
         }
         break;
-    /*case Green:
-    block.setFillColor(sf::Color::Green);
-    block.setOutlineColor(sf::Color(42, 183, 37, 255));
+    case Green:
+        for(int x = 0; x < 4; x++)
+        {
+            if(x < 2)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 1;
+            }
+            else
+            {
+                movingx[x] = x + 2;
+                movingy[x] = 0;
+            }
+        }
         break;
     case Red:
-    block.setFillColor(sf::Color::Red);
-    block.setOutlineColor(sf::Color(195, 25, 30, 255));
-        break;*/
+        for(int x = 0; x < 4; x++)
+        {
+            if(x < 2)
+            {
+                movingx[x] = x + 3;
+                movingy[x] = 0;
+            }
+            else
+            {
+                movingx[x] = x + 2;
+                movingy[x] = 1;
+            }
+        }
+        break;
     case Purple:
         for(int x = 0; x < 4; x++)
         {

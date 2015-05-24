@@ -1,12 +1,14 @@
 #include <SFML/Graphics.hpp>
+#include "tetrisGameManager.h"
 
-const int screenWidth = 1024;
-const int screenHeight = 760;
+const int screenWidth = 290;
+const int screenHeight = 696;
 
 int main()
 {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Space Tetris");
+    tetrisGameManager gameManager;
 
     while (window.isOpen())
     {
@@ -20,7 +22,10 @@ int main()
         }
 
         // Clear screen
-        window.clear();
+        window.clear(sf::Color::Black);
+
+        // Draw tetris grid
+        gameManager.drawLogic(window);
 
         // Update the window
         window.display();

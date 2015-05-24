@@ -1,6 +1,7 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
 
+#include <SFML/Graphics.hpp>
 #include <chrono>
 
 namespace sf
@@ -14,7 +15,7 @@ class tetrisGameManager
         tetrisGameManager();
         void drawLogic(sf::RenderWindow& window);
  private:
-	int blockGrid[10][24];
+	int blockGrid[9][23];
 	enum BlockStatus
 	{
         Empty,

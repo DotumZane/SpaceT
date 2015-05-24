@@ -4,18 +4,18 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-namespace sf
+/*namespace sf
 {
     class RenderWindow;
-}
+}*/
 
 class tetrisGameManager
 {
  public:
         tetrisGameManager();
-        void drawLogic(sf::RenderWindow& window);
+        void drawGrid(sf::RenderWindow& window);
  private:
-	int blockGrid[9][23];
+	int blockGrid[10][24];
 	enum BlockStatus
 	{
         Empty,

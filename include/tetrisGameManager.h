@@ -1,5 +1,5 @@
 #ifndef TETRISGAMEMANAGER_H
-#define TETRISGAMEMANAGER_H
+#define TETRISGAMEMANAGER_Hs
 #include <chrono>
 namespace sf
 {

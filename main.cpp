@@ -3,34 +3,24 @@
 int main()
 {
     // Create the main window
-    sf::RenderWindow app(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(1024, 760), "Space Tetris");
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-        return EXIT_FAILURE;
-    sf::Sprite sprite(texture);
-
-	// Start the game loop
-    while (app.isOpen())
+    while (window.isOpen())
     {
         // Process events
         sf::Event event;
-        while (app.pollEvent(event))
+        while (window.pollEvent(event))
         {
             // Close window : exit
             if (event.type == sf::Event::Closed)
-                app.close();
+                window.close();
         }
 
         // Clear screen
-        app.clear();
-
-        // Draw the sprite
-        app.draw(sprite);
+        window.clear();
 
         // Update the window
-        app.display();
+        window.display();
     }
 
     return EXIT_SUCCESS;

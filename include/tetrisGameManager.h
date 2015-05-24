@@ -13,9 +13,12 @@ class tetrisGameManager
 {
  public:
         tetrisGameManager();
+        void moveBlock();
         void drawGrid(sf::RenderWindow& window);
  private:
 	int blockGrid[10][24];
+	int movingx[4];
+	int movingy[4];
 	enum BlockStatus
 	{
         Empty,

@@ -8,6 +8,45 @@ tetrisGameManager::tetrisGameManager()
             blockGrid[x][y] = Empty;
         }
     }
+    for(int x = 0; x < 4; x++)
+    {
+        movingx[x] = (x+3);
+        movingy[x] = 0;
+    }
+}
+
+void tetrisGameManager::moveBlock()
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
+    sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && movingx[0] == 0 ||
+    sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && movingx[3] == 9 ||
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        for(int x = 0; x < 4; x++)
+        {
+            blockGrid[movingx[x]][movingy[x]] = Cyan;
+        }
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        for(int x = 0; x < 4; x++)
+        {
+            blockGrid[movingx[x]][movingy[x]] = Empty;
+            movingx[x] = movingx[x] - 1;
+            blockGrid[movingx[x]][movingy[x]] = Cyan;
+        }
+
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        for(int x = 0; x < 4; x++)
+        {
+            blockGrid[movingx[x]][movingy[x]] = Empty;
+            movingx[x] = movingx[x] + 1;
+            blockGrid[movingx[x]][movingy[x]] = Cyan;
+        }
+
+    }
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)

@@ -25,6 +25,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // Draw tetris grid
+        gameManager.moveBlock();
         gameManager.drawGrid(window);
 
         // Update the window

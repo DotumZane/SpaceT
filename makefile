@@ -1,4 +1,4 @@
-CC = g++
+CC = g++ -std=c++11
 OBJS = main.o tetrisBlocks.o tetrisGameManager.o
 CFLAGS = -Wall -c
 LFLAGS = -Wall

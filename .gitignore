@@ -1,6 +1,7 @@
 # Object files
 *.o
-spaceT.depend
+SpaceT.depend
+SpaceT.layout
 bin/*
 
 # Executable and library files

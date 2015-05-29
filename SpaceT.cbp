@@ -46,10 +46,27 @@
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 		</Compiler>
+		<ExtraCommands>
+			<Add after="$(PROJECT_DIR)Update_Docs" />
+		</ExtraCommands>
 		<Unit filename="cb.bmp" />
+		<Unit filename="include/bullet.h" />
+		<Unit filename="include/bullets/pBullet.hpp" />
+		<Unit filename="include/enemy.hpp" />
+		<Unit filename="include/enemyManager.h" />
+		<Unit filename="include/player.h" />
+		<Unit filename="include/playerManager.hpp" />
 		<Unit filename="include/playerShip.h" />
 		<Unit filename="include/tetrisGameManager.h" />
+		<Unit filename="include/textureManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="src/bullet.cpp" />
+		<Unit filename="src/bullets/pbullet.cpp" />
+		<Unit filename="src/enemy.cpp" />
+		<Unit filename="src/enemyManager.cpp" />
+		<Unit filename="src/player.cpp" />
+		<Unit filename="src/playerManager.cpp" />
 		<Unit filename="src/tetrisGameManager.cpp" />
 		<Extensions>
 			<code_completion />

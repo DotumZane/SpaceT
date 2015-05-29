@@ -7,12 +7,15 @@
         enemy in space invaders game
 
     See Also:
-        <enemyManager> - manages the instances
+        <enemyManager>
 */
 class enemy
 {
 public:
+    // Group: Constructors
     enemy(const sf::Texture& texture, const sf::Vector2f& pos);
+    // Group: Public
+
     /*
         Function: logic
             updates the enemy states

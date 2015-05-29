@@ -14,6 +14,9 @@ class RenderWindow;
 
         relives the main file from dealing with
         the containers of enemies.
+
+    See Also:
+        <enemy>
 */
 class enemyManager
 {

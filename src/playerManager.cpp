@@ -1,7 +1,7 @@
 #include "playerManager.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include "../appProccess.hpp"
+#include "../main.h"
 #include <textureManager.h>
 
 //                       args for player are: lives,texture,

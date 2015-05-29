@@ -13,8 +13,9 @@ class RenderWindow;
         manages the player and player bullets
 
     See Also:
+
         <player> - instance this class manages
-        <pbullet> -
+        <pbullet> - player bullet
 */
 class playerManager
 {

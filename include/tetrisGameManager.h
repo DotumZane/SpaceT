@@ -1,9 +1,10 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
-
-#include <SFML/Graphics.hpp>
 #include <chrono>
-
+namespace sf
+{
+    class RenderWindow;
+}
 
 /*
     Class: tetrisGameManager
@@ -14,9 +15,8 @@
 */
 class tetrisGameManager
 {
-    public:
+public:
     tetrisGameManager();
-
     void updateGrid(sf::RenderWindow& window);
 private:
     const static int blockGridSize_Y = 24;
@@ -34,6 +34,13 @@ private:
         Red,
         Purple
     };
+    tetrisGameManager();
+    void createBlock(BlockColors status);
+    void updateGrid(sf::RenderWindow& window);
+private:
+    const static int blockGridSize_Y = 24;
+    const static int blockGridSize_X = 10;
+
     /// the following enum uses the url below as refernce
     /// http://mercurymasterpunk.ca/images/tetris.jpg
     enum class BlockShapes

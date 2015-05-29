@@ -1,10 +1,12 @@
 # Object files
 *.o
 SpaceT.depend
+
 SpaceT.layout
 bin/*
 
 # Executable and library files
+*.exe
 SpaceT
 *.dll
 *.lib

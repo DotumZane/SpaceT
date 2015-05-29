@@ -16,13 +16,15 @@
 					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="include" />
-					<Add directory="../Desktop/SFML-2.3/include" />
+					<Add directory="../../Desktop/SFML-2.3/include" />
+					<Add directory="../SFML-2.0/include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
-					<Add directory="../Desktop/SFML-2.3/lib" />
+					<Add directory="../Desktop/SFML-2.0/lib" />
+					<Add directory="../SFML-2.0/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">

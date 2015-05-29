@@ -1,4 +1,7 @@
 #include "tetrisGameManager.h"
+#include <SFML/Window/KeyBoard.hpp>
+#include  <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 /**
     this file is in major need of reformatting
     it has broken two major guidelines

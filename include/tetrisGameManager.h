@@ -1,7 +1,7 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
 #include <chrono>
-namespace sf 
+namespace sf
 {
     class RenderWindow;
 }
@@ -13,13 +13,7 @@ namespace sf
 */
 class tetrisGameManager
 {
-    public:
-    tetrisGameManager();
-    void createBlock(BlockColors status);
-    void updateGrid(sf::RenderWindow& window);
-private:
-    const static int blockGridSize_Y = 24;
-    const static int blockGridSize_X = 10;
+public:
     /// recommend to use enum class for type safety purpose
     /// needs to include what shape creates from color
     enum BlockColors
@@ -33,6 +27,13 @@ private:
         Red,
         Purple
     };
+    tetrisGameManager();
+    void createBlock(BlockColors status);
+    void updateGrid(sf::RenderWindow& window);
+private:
+    const static int blockGridSize_Y = 24;
+    const static int blockGridSize_X = 10;
+
     /// the following enum uses the url below as refernce
     /// http://mercurymasterpunk.ca/images/tetris.jpg
     enum class BlockShapes

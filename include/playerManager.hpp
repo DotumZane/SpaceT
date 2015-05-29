@@ -8,7 +8,14 @@ namespace sf
 {
 class RenderWindow;
 }
+/*
+    Class: playerManager
+        manages the player and player bullets
 
+    See Also:
+        <player> - instance this class manages
+        <pbullet> -
+*/
 class playerManager
 {
 public:

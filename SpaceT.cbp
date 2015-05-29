@@ -52,7 +52,6 @@
 		<Unit filename="include/playerShip.h" />
 		<Unit filename="include/tetrisGameManager.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/playerShip.cpp" />
 		<Unit filename="src/tetrisGameManager.cpp" />
 		<Extensions>
 			<code_completion />

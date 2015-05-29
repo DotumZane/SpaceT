@@ -6,14 +6,21 @@ namespace sf
     class RenderWindow;
 }
 
-/**
- this classes handless
+/*
+    Class: tetrisGameManager
+
+        this classes handless
  everything to deal with tetris game side
  currently being worked on.
 */
 class tetrisGameManager
 {
 public:
+    tetrisGameManager();
+    void updateGrid(sf::RenderWindow& window);
+private:
+    const static int blockGridSize_Y = 24;
+    const static int blockGridSize_X = 10;
     /// recommend to use enum class for type safety purpose
     /// needs to include what shape creates from color
     enum BlockColors
@@ -59,6 +66,8 @@ private:
     bool verticalCooldown;
     std::chrono::time_point<std::chrono::system_clock> end_time;
     bool moveBlock(BlockColors status);
+    void createBlock(BlockColors status);
+
     void drawGrid(sf::RenderWindow& window);
     bool checkLines();
 

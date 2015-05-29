@@ -5,8 +5,10 @@
 #include <chrono>
 
 
-/**
- this classes handless
+/*
+    Class: tetrisGameManager
+
+        this classes handless
  everything to deal with tetris game side
  currently being worked on.
 */
@@ -14,7 +16,7 @@ class tetrisGameManager
 {
     public:
     tetrisGameManager();
-    void createBlock(BlockColors status);
+
     void updateGrid(sf::RenderWindow& window);
 private:
     const static int blockGridSize_Y = 24;
@@ -57,6 +59,8 @@ private:
     bool verticalCooldown;
     std::chrono::time_point<std::chrono::system_clock> end_time;
     bool moveBlock(BlockColors status);
+    void createBlock(BlockColors status);
+
     void drawGrid(sf::RenderWindow& window);
     bool checkLines();
 

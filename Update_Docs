@@ -1,0 +1,2 @@
+#!/bin/sh
+/home/jadon/Desktop/natural_docs/NaturalDocs -i ./include -i ./src --project ../proj --output html ../docs

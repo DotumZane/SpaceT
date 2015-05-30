@@ -24,7 +24,26 @@ public:
             basic construction of game manager
     */
     tetrisGameManager();
-    // group: public
+    // group: public type
+
+     /// recommend to use enum class for type safety purpose
+    /// needs to include what shape creates from color
+    /*
+        Enum: BlockColors
+            the block colors that exist
+    */
+    enum BlockColors
+    {
+        Empty,
+        Cyan,
+        Yellow,
+        Orange,
+        Blue,
+        Green,
+        Red,
+        Purple
+    };
+    //group: public
 
     /*
         Function: updateGrid(sf::RenderWindow)
@@ -38,6 +57,35 @@ public:
             window(1) the window the manager will draw on
     */
     void updateGrid(sf::RenderWindow& window);
+    /*
+        Function: createRandomNormBlock
+            create a random Normal shape on screen.
+
+            when a shape needs to be created
+            on the tetris game. call this function
+            to create a random normal block on the
+            screen.
+
+        Warning:
+            this function should only be called when
+            the currentBlock has been destroyed.
+
+    */
+    void createRandomNormBlock(void);
+    /*
+        Function: createBlock(BlockColors)
+            create a shape based on color.
+
+        Parameters:
+            status(1)
+                status is the color of which the
+                shape is based on;
+
+        See Also:
+            <createRandomNormBlock>
+
+    */
+    void createBlock(BlockColors status);
 private:
     const static int blockGridSize_Y = 24;
     const static int blockGridSize_X = 10;
@@ -56,19 +104,7 @@ private:
         S_shape
         /// basic shapes
     };
-     /// recommend to use enum class for type safety purpose
-    /// needs to include what shape creates from color
-    enum BlockColors
-    {
-        Empty,
-        Cyan,
-        Yellow,
-        Orange,
-        Blue,
-        Green,
-        Red,
-        Purple
-    };
+
     BlockColors currentBlock;
 
     int blockGrid[blockGridSize_X][blockGridSize_Y];
@@ -81,8 +117,6 @@ private:
     bool verticalCooldown;
     std::chrono::time_point<std::chrono::system_clock> end_time;
     void moveBlock(BlockColors status);
-    void createBlock(BlockColors status);
-
     void drawGrid(sf::RenderWindow& window);
     void checkLines();
     bool checkLoseCondition();

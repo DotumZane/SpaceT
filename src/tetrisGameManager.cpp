@@ -28,6 +28,34 @@ tetrisGameManager::tetrisGameManager()
     /// create a inital start piece
     this->createBlock(Red);
 }
+void tetrisGameManager::createRandomNormBlock()
+{
+     switch(rand() % 7 + 1)
+            {
+            case 1:
+                createBlock(Cyan);
+                break;
+            case 2:
+                createBlock(Yellow);
+                break;
+            case 3:
+                createBlock(Orange);
+                break;
+            case 4:
+                createBlock(Blue);
+                break;
+            case 5:
+                createBlock(Green);
+                break;
+            case 6:
+                createBlock(Red);
+                break;
+            case 7:
+                createBlock(Purple);
+                break;
+            };
+}
+
 /// creates a block piece -- recommend moving to tetris block class.
 void tetrisGameManager::createBlock(BlockColors status)
 {
@@ -145,19 +173,23 @@ void tetrisGameManager::moveBlock(BlockColors status)
 
     if(!horizontalCooldown)
     {
-        bool safeRight = false;
-        bool safeLeft = false;
+        bool safeRight = true;
+        bool safeLeft = true;
         for(unsigned int i = 0; i < movingx.size(); i++)
         {
-            safeLeft  |= (blockGrid[movingx[i]-1][movingy[i]] == Empty);
-            safeRight |= (blockGrid[movingx[i]+1][movingy[i]] == Empty);
+                bool LeftSafeBefore = false;
+                bool RightSafeBefore = false;
+                LeftSafeBefore  |= (blockGrid[movingx[i]-1][movingy[i]] == Empty);
+                RightSafeBefore |= (blockGrid[movingx[i]+1][movingy[i]] == Empty);
             for(unsigned int k = 0; k < movingx.size(); k++)
             {
-                safeLeft |= ( (movingx[i]-1 == movingx[k]) && movingy[i] == movingy[k]);
-                safeRight |= ( (movingx[i]+1 == movingx[k]) && movingy[i] == movingy[k]);
+               LeftSafeBefore|= ( (movingx[i]-1 == movingx[k]) && movingy[i] == movingy[k]);
+               RightSafeBefore |= ( (movingx[i]+1 == movingx[k]) && movingy[i] == movingy[k]);
             }
-            safeLeft  &= (movingx[i]+1 < tetrisGameManager::blockGridSize_X - 1);
-            safeRight &= (movingx[i]-1 > 1);
+            safeLeft &= !(movingx[i]-1 == -1);
+            safeLeft &= LeftSafeBefore;
+            safeRight &= RightSafeBefore;
+            safeRight &= !(movingx[i]+1 == tetrisGameManager::blockGridSize_X - 1);
 
         }
          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
@@ -174,7 +206,8 @@ void tetrisGameManager::moveBlock(BlockColors status)
                     movingx[x] = movingx[x] - 1;
                     blockGrid[movingx[x]][movingy[x]] = status;
                 }
-         } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+         }
+         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
             !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) & safeRight)
         {
             horizontalCooldown = true;
@@ -198,55 +231,7 @@ void tetrisGameManager::moveBlock(BlockColors status)
     /// this is really bad formatted code that looks extremely hard to adjust
     /// this really needs to broken up to different if statements
     /// looping through array would be more flexible and eaiser to read
-  /*  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-    && !horizontalCooldown)
-    {
-        auto minMaxItr = std::minmax_element(movingx.begin(),movingy.end());
-        if( !(*minMaxItr.first) - 1 == -1)
-        {
-            horizontalCooldown = true;
-            for(int x = 0; x < 4; x++)
-            {
-                blockGrid[movingx[x]][movingy[x]] = Empty;
-                movingx[x] = movingx[x] - 1;
-                blockGrid[movingx[x]][movingy[x]] = status;
-            }
-        }
 
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !horizontalCooldown &&
-            (blockGrid[movingx[0] + 1][movingy[0]] == Empty ||        (movingy[0] == movingy[1] && movingx[0] + 1 == movingx[1]) ||
-             (movingy[0] == movingy[2] && movingx[0] + 1 == movingx[2]) ||
-             (movingy[0] == movingy[3] && movingx[0] + 1 == movingx[3]))
-            &&(blockGrid[movingx[1] + 1][movingy[1]] == Empty || (movingy[1] == movingy[0] && movingx[1] + 1 == movingx[0]) ||
-               (movingy[1] == movingy[2] && movingx[1] + 1 == movingx[2]) ||
-               (movingy[1] == movingy[3] && movingx[1] + 1 == movingx[3]))
-            &&(blockGrid[movingx[2] + 1][movingy[2]] == Empty || (movingy[2] == movingy[0] && movingx[2] + 1 == movingx[0]) ||
-               (movingy[2] == movingy[1] && movingx[2] + 1 == movingx[1]) ||
-               (movingy[2] == movingy[3] && movingx[2] + 1 == movingx[3]))
-            &&(blockGrid[movingx[3] + 1][movingy[3]] == Empty || (movingy[3] == movingy[0] && movingx[3] + 1 == movingx[0]) ||
-               (movingy[3] == movingy[1] && movingx[3] + 1 == movingx[1]) ||
-               (movingy[3] == movingy[2] && movingx[3] + 1 == movingx[2]))
-            && !(movingx[0] == 9 || movingx[1] == 9 || movingx[2] == 9 || movingx[3] == 9))
-    {
-        horizontalCooldown = true;
-        for(int x = 0; x < 4; x++)
-        {
-            blockGrid[movingx[x]][movingy[x]] = Empty;
-            movingx[x] = movingx[x] + 1;
-            blockGrid[movingx[x]][movingy[x]] = status;
-        }
-    }
-    else
-    {
-        /// if not moving blocks use a simple setting of colors
-        if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            horizontalCooldown = false;
-        for(int x = 0; x < 4; x++)
-        {
-            blockGrid[movingx[x]][movingy[x]] = status;
-        }
-    } */
     ///vertical movement checking implemented here
     if(end_time < std::chrono::system_clock::now() || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !verticalCooldown)
     {
@@ -277,30 +262,7 @@ void tetrisGameManager::moveBlock(BlockColors status)
         }
         else
         {
-            switch(rand() % 7 + 1)
-            {
-            case 1:
-                createBlock(Cyan);
-                break;
-            case 2:
-                createBlock(Yellow);
-                break;
-            case 3:
-                createBlock(Orange);
-                break;
-            case 4:
-                createBlock(Blue);
-                break;
-            case 5:
-                createBlock(Green);
-                break;
-            case 6:
-                createBlock(Red);
-                break;
-            case 7:
-                createBlock(Purple);
-                break;
-            };
+            this->createRandomNormBlock();
         }
         end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(250);
     }
@@ -350,8 +312,8 @@ bool  tetrisGameManager::checkLoseCondition()
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)
 {
     const int blockSize = screenHeight/blockGridSize_Y;
-    sf::RectangleShape block(sf::Vector2f(blockSize, blockSize));
-    block.setOutlineThickness(5);
+    sf::RectangleShape block(sf::Vector2f(19, 19));
+    block.setOutlineThickness(5); // need to make 5 dynamic
     for(int x = 0; x < blockGridSize_X; x++)
     {
         for(int y = 0; y < blockGridSize_Y; y++)

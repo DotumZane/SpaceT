@@ -12,18 +12,60 @@ class RenderWindow;
     Class: playerManager
         manages the player and player bullets
 
-    See Also:
+    note:
+        player ship is placed at the bottom of the screen.
 
+    See Also:
         <player> - instance this class manages
         <pbullet> - player bullet
 */
 class playerManager
 {
 public:
+    //group: public constructors
+    /*
+        Constructor: playerManager(const textureManage& images)
+            construct playerManager using image DataBase.
+
+        Parameters:
+            images(1) -- the image manager to be used
+                by the playerManager.
+
+        Warning:
+            images must live as long as their is
+                playerManager is referring to it.
+
+        See Also:
+            <textureManager>
+    */
     playerManager(const textureManager& images);
+    //group: public methods
+    /*
+        Function: drawItems(sf::RenderWindow&)
+            draw the player and player bullets on window
+
+        Parameters:
+            app(1) -- the window to draw the player
+                and the playerBullets on.
+    */
     void drawItems(sf::RenderWindow& app);
-    void checkSides(sf::FloatRect&);
-    void eventLogic(void);
+    /*
+        Function: checkSides(sf::FloatRect&)
+            check if any of the player bullets
+            have reached the end of the screen.
+
+        Parameters:
+            screen(1) -- the screens rectangle.
+                builds drawings from this rectangle.
+    */
+    void checkSides(const sf::FloatRect&);
+    /*
+        Function: keyEvents
+            checks events and the key board.
+
+            this function checks the keyboard to
+            see if the keys have been pressed.
+    */
     void KeyEvents(void);
 protected:
 private:

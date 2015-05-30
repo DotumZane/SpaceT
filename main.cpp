@@ -42,10 +42,6 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-
-                 case sf::Event::KeyPressed:
-                        playMan.KeyEvents();
-                     break;
                 default:
                     break;
                 }
@@ -55,8 +51,11 @@ int main()
         window.clear(sf::Color::Black);
 
         // Draw tetris grid
-        gameManager.updateGrid(window);
-
+        //gameManager.updateGrid(window);
+        playMan.drawItems(window);
+        playMan.KeyEvents();
+        playMan.checkSides(sf::FloatRect(0,0,screenHeight,screenWidth));
+        enemyMan.draw(window);
         // Update the window
         window.display();
     }

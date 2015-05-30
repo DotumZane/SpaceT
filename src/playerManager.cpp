@@ -4,7 +4,7 @@
 #include "main.h"
 #include <textureManager.h>
 
-//                       args for player are: lives,texture,
+
 playerManager::playerManager(const textureManager& images) : thePlayer(3,images.getTexture("player.png"),
             sf::Vector2f(0.0f,static_cast<float>(screenHeight) - 50.0f)) , images(images)
 {
@@ -22,8 +22,13 @@ void playerManager::drawItems(sf::RenderWindow& app)
     }
 
 }
-void playerManager::checkSides(sf::FloatRect& screenRect)
+void playerManager::checkSides(const sf::FloatRect& screenRect)
 {
+    /*
+        it is an iterator that points
+        the current instance of the
+        playerBullets.
+    */
     auto it = playerBullets.begin();
     while( it != playerBullets.end() )
     {
@@ -47,14 +52,7 @@ void playerManager::KeyEvents(void)
                         thePlayer.getSprite().getPosition());
         playerBullets.push_back(Nbullet);
     }
-}
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-void playerManager::eventLogic(void)
-{
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         thePlayer.move(4.0f);
@@ -65,3 +63,4 @@ void playerManager::eventLogic(void)
         thePlayer.move(-4.0f);
     }
 }
+

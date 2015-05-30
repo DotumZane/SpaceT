@@ -147,11 +147,11 @@ void tetrisGameManager::moveBlock(BlockColors status)
     {
         bool safeRight = false;
         bool safeLeft = false;
-        for(int i = 0; i < movingx.size(); i++)
+        for(unsigned int i = 0; i < movingx.size(); i++)
         {
             safeLeft  |= (blockGrid[movingx[i]-1][movingy[i]] == Empty);
             safeRight |= (blockGrid[movingx[i]+1][movingy[i]] == Empty);
-            for(int k = 0; k < movingx.size(); k++)
+            for(unsigned int k = 0; k < movingx.size(); k++)
             {
                 safeLeft |= ( (movingx[i]-1 == movingx[k]) && movingy[i] == movingy[k]);
                 safeRight |= ( (movingx[i]+1 == movingx[k]) && movingy[i] == movingy[k]);

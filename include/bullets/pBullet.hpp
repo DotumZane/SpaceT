@@ -13,7 +13,7 @@ class pBullet : public bullet
         {
             this->move(-3.0f);
         }
-        bool calcSide(sf::FloatRect& rect)
+        bool calcSide(const sf::FloatRect& rect)
         {
             //if not inside global screen
             return !(this->getSprite().getGlobalBounds().intersects(rect));

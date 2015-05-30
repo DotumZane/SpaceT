@@ -14,7 +14,6 @@ class bullet
 public:
     //Group: public
 
-
     /*
         Constructor: bullet(const sf::texture&,const sf::Vector2f&)
             build visual entity

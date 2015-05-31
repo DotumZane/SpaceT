@@ -2,6 +2,8 @@
 #define TETRISGAMEMANAGER_H
 #include <chrono>
 #include <array>
+#include "main.h"
+#include <SFML/System/Vector2.hpp>
 namespace sf
 {
     class RenderWindow;
@@ -43,8 +45,8 @@ public:
         Red,
         Purple
     };
-    //group: public
 
+    //group: public
     /*
         Function: updateGrid(sf::RenderWindow)
             update the tetris game
@@ -86,10 +88,34 @@ public:
 
     */
     void createBlock(BlockColors status);
+     //group: public static
+    /*
+        Function: getTetrisGameSize
+            get the size of gameboard.
+
+        this function estimates what the default size of
+        the tetrisGameBoard size should be.
+
+        Note:
+            the numbers created by this function
+            originate in ints and transform to floats.
+
+        Return:
+            size(sf::Vector2f)
+            the size of gameboard in float numbers
+
+    */
+    inline static const sf::Vector2f getTetrisGameSize()
+    {
+
+        return sf::Vector2f((blockGridSize_X)* (screenHeight/blockGridSize_Y), screenHeight);
+    }
 private:
     const static int blockGridSize_Y = 24;
     const static int blockGridSize_X = 10;
     const static int sizeOfBiggestPiece = 4;
+    //the thickness of the
+    const static int borderThickness = 5;
 
     /// the following enum uses the url below as refernce
     /// http://mercurymasterpunk.ca/images/tetris.jpg
@@ -110,8 +136,8 @@ private:
     int blockGrid[blockGridSize_X][blockGridSize_Y];
     /// movingx and movingy contain points on grid the system is
     /// cords(movingx[numBlock],movingy[numBlock]) == the cords for numBlock
-    std::array<int,4> movingx; /// need to use more flexible system.
-    std::array<int,4> movingy; /// for loops are to be used to access the arrays
+    std::array<int,sizeOfBiggestPiece> movingx; /// need to use more flexible system.
+    std::array<int,sizeOfBiggestPiece> movingy; /// for loops are to be used to access the arrays
     bool gameOver; /// needs to a way to signal game over conditon met
     bool horizontalCooldown;
     bool verticalCooldown;

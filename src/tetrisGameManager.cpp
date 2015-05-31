@@ -310,16 +310,19 @@ bool  tetrisGameManager::checkLoseCondition()
 }
 
 void tetrisGameManager::drawGrid(sf::RenderWindow& window)
-{
-    const int blockSize = screenHeight/blockGridSize_Y;
-    sf::RectangleShape block(sf::Vector2f(19, 19));
-    block.setOutlineThickness(5); // need to make 5 dynamic
+{   //first calculate the size of single side of a block with padding
+    const int blockSizeFull = screenHeight/blockGridSize_Y;
+    // remove the padding. there are two side which are padded remove both.
+    const int BlockSizeReal = blockSizeFull -(borderThickness*2);
+
+    sf::RectangleShape block(sf::Vector2f(BlockSizeReal, BlockSizeReal));
+    block.setOutlineThickness(borderThickness);
     for(int x = 0; x < blockGridSize_X; x++)
     {
         for(int y = 0; y < blockGridSize_Y; y++)
         {
             /// i have no idea how you get this calculation
-            block.setPosition(x * 29 + 5, y * 29 + 5);
+            block.setPosition(x * (blockSizeFull) + borderThickness, y * (blockSizeFull) + borderThickness);
             switch(blockGrid[x][y])
             {
             case Empty:

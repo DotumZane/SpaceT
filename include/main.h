@@ -1,3 +1,5 @@
+#ifndef MAIN_H
+#define MAIN_H
 
 /*
     File: globals
@@ -27,3 +29,4 @@ const int screenWidth = 1020;
         <screenWidth>
 */
 const int screenHeight = 696;
+#endif

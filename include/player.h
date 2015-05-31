@@ -50,8 +50,17 @@ public:
     {
         return this->sprite;
     }
+    //group: public static vars
+    /*
+        variable: sizeOfPlayersides
+
+            varible is the length of player image
+            in pixels for both x and y side..
+    */
+     constexpr static float sizeOfPLayerSides = 50.0f;
 protected:
 private:
+
      sf::Sprite sprite; //!< Member variable "boundingRect"
     unsigned int lives; //!< Member variable "lives"
 };

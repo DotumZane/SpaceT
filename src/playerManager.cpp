@@ -16,13 +16,13 @@ void playerManager::drawItems(sf::RenderWindow& app)
 {
 
     app.draw(thePlayer.getSprite());
-    /*auto it = playerBullets.begin();
+    auto it = playerBullets.begin();
     while( it != playerBullets.end() )
     {
         app.draw(it->getSprite());
         ++it;
     }
-    */
+
 }
 void playerManager::checkSides()
 {
@@ -31,7 +31,7 @@ void playerManager::checkSides()
         the current instance of the
         playerBullets.
     */
-   /* auto it = playerBullets.begin();
+    auto it = playerBullets.begin();
     while( it != playerBullets.end() )
     {
         if(it->calcSide(screenComp))
@@ -44,17 +44,18 @@ void playerManager::checkSides()
             it->logic();
             ++it;
         }
-    } */
+    }
 }
 void playerManager::KeyEvents(void)
 {
-  /*  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->lastShotTime < std::chrono::system_clock::now())
     {
         pBullet Nbullet(images.getTexture("bullet.png"),
                         thePlayer.getSprite().getPosition());
         playerBullets.push_back(Nbullet);
+         this->lastShotTime = std::chrono::system_clock::now() + std::chrono::milliseconds(500);
     }
-    */
+
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {

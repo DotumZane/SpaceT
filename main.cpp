@@ -27,10 +27,12 @@ int main()
 
     if(!images.addAllCommonTextures())
         return 255;
-    playerManager playMan(images,
-            //the size of screen playing in.
-        sf::FloatRect(tetrisGameManager::getTetrisGameSize().x,0,
-            screenWidth - tetrisGameManager::getTetrisGameSize().x,screenHeight));
+    sf::FloatRect screenRectSpaceInv(tetrisGameManager::getTetrisGameSize().x,0,
+            screenWidth - tetrisGameManager::getTetrisGameSize().x,screenHeight);
+    playerManager playMan(images,screenRectSpaceInv);
+    enemyManager eneMan(images,screenRectSpaceInv);
+            //the size of screen playing in.)
+
     while (window.isOpen())
     {
         // Process events
@@ -53,6 +55,7 @@ int main()
 
         // Draw tetris grid
         gameManager.updateGrid(window);
+        eneMan.update(window);
         playMan.drawItems(window);
         playMan.KeyEvents();
         playMan.checkSides(); //*/

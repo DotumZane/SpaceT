@@ -22,21 +22,21 @@ class enemyManager
 {
 public:
     /*
-        Constructor: enemyManager(const textureManager&)
+        Constructor: enemyManager(const textureManager&,const sf::FloatRect&)
             initilize manager with texture system.
 
         Parameters:
             images(1) - the textureManager
     */
-    enemyManager(const textureManager& images);
+    enemyManager(const textureManager& images,const sf::FloatRect&);
     /*
-        Function: draw(sf::RenderWindow&)
+        Function: update(sf::RenderWindow&)
             draw and update all instances of enemies
 
         Parameters:
             app(1) - rendering window
     */
-    void draw(sf::RenderWindow& app);
+    void update(sf::RenderWindow& app);
     /*
         Function: addEnemy(const textureManager&)
             adds enemies
@@ -49,7 +49,7 @@ private:
     //enemy NeewEnemy;
    const textureManager& imageManager;
     std::list<enemy> enemiesList;
-    //const textureManager& images;
+   const sf::FloatRect screenComp;
 };
 
 #endif // ENEMYMANAGER_H

@@ -3,6 +3,7 @@
 #include <player.h>
 #include <bullets/pBullet.hpp>
 #include <list>
+#include <chrono>
 class textureManager;
 namespace sf
 {
@@ -69,6 +70,7 @@ private:
     const textureManager& images;
     std::list<pBullet> playerBullets;
     const sf::FloatRect screenComp;
+    std::chrono::time_point<std::chrono::system_clock> lastShotTime;
 };
 
 #endif // PLAYERMANGER_H

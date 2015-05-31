@@ -20,9 +20,9 @@
 					<Add directory="../SFML-2.0/include" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics" />
-					<Add library="sfml-window" />
-					<Add library="sfml-system" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
 					<Add directory="../Desktop/SFML-2.0/lib" />
 					<Add directory="../SFML-2.0/lib" />
 				</Linker>
@@ -47,7 +47,11 @@
 		<Compiler>
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add directory="../../Documents/SFML-2.2/include" />
 		</Compiler>
+		<Linker>
+			<Add directory="../../Documents/SFML-2.2/lib" />
+		</Linker>
 		<ExtraCommands>
 			<Add after="$(PROJECT_DIR)Update_Docs" />
 		</ExtraCommands>

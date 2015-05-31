@@ -38,7 +38,7 @@ public:
         See Also:
             <textureManager>
     */
-    playerManager(const textureManager& images);
+    playerManager(const textureManager& images,sf::FloatRect);
     //group: public methods
     /*
         Function: drawItems(sf::RenderWindow&)
@@ -53,12 +53,8 @@ public:
         Function: checkSides(sf::FloatRect&)
             check if any of the player bullets
             have reached the end of the screen.
-
-        Parameters:
-            screen(1) -- the screens rectangle.
-                builds drawings from this rectangle.
     */
-    void checkSides(const sf::FloatRect&);
+    void checkSides();
     /*
         Function: keyEvents
             checks events and the key board.
@@ -72,6 +68,7 @@ private:
     player thePlayer;
     const textureManager& images;
     std::list<pBullet> playerBullets;
+    const sf::FloatRect screenComp;
 };
 
 #endif // PLAYERMANGER_H

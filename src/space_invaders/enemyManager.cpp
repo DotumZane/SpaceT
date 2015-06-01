@@ -1,7 +1,7 @@
-#include "enemyManager.h"
+#include "space_invaders/enemyManager.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <textureManager.h>
+#include <space_invaders/textureManager.h>
 enemyManager::enemyManager(const textureManager& images,const sf::FloatRect& screenComp) : imageManager(images),
 screenComp(screenComp)
 {

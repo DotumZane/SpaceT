@@ -1,7 +1,7 @@
 #ifndef PLAYERMANGER_H
 #define PLAYERMANGER_H
-#include <player.h>
-#include <bullets/pBullet.hpp>
+#include <space_invaders/player.h>
+#include <space_invaders/bullets/pBullet.hpp>
 #include <list>
 #include <chrono>
 class textureManager;

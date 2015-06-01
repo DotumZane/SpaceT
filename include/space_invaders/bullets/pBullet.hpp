@@ -1,7 +1,7 @@
 #ifndef PBULLET_H
 #define PBULLET_H
 
-#include <bullet.h>
+#include <space_invaders/bullet.h>
 
 
 class pBullet : public bullet

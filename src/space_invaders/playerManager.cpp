@@ -1,8 +1,8 @@
-#include "playerManager.hpp"
+#include "space_invaders/playerManager.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include "main.h"
-#include <textureManager.h>
+#include <space_invaders/textureManager.h>
 
 playerManager::playerManager(const textureManager& images,sf::FloatRect screenComp) :
     thePlayer(3,images.getTexture("player.png"),

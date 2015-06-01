@@ -1,4 +1,4 @@
-#include "bullet.h"
+#include "space_invaders/bullet.h"
 
 bullet::bullet(const sf::Texture& texture,const sf::Vector2f& pos) :  sprite(texture)
 {

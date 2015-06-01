@@ -1,7 +1,7 @@
 #ifndef ENEMYMANAGER_H
 #define ENEMYMANAGER_H
 #include <list>
-#include <enemy.hpp>
+#include <space_invaders/enemy.hpp>
 class textureManager;
 namespace sf
 {

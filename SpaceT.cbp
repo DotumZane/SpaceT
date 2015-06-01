@@ -55,24 +55,21 @@
 		<ExtraCommands>
 			<Add after="$(PROJECT_DIR)Update_Docs" />
 		</ExtraCommands>
-		<Unit filename="cb.bmp" />
-		<Unit filename="include/bullet.h" />
-		<Unit filename="include/bullets/pBullet.hpp" />
-		<Unit filename="include/enemy.hpp" />
-		<Unit filename="include/enemyManager.h" />
-		<Unit filename="include/player.h" />
-		<Unit filename="include/playerManager.hpp" />
-		<Unit filename="include/playerShip.h" />
+		<Unit filename="include/main.h" />
+		<Unit filename="include/space_invaders/bullet.h" />
+		<Unit filename="include/space_invaders/bullets/pBullet.hpp" />
+		<Unit filename="include/space_invaders/enemy.hpp" />
+		<Unit filename="include/space_invaders/enemyManager.h" />
+		<Unit filename="include/space_invaders/player.h" />
+		<Unit filename="include/space_invaders/playerManager.hpp" />
+		<Unit filename="include/space_invaders/textureManager.h" />
 		<Unit filename="include/tetrisGameManager.h" />
-		<Unit filename="include/textureManager.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="main.h" />
-		<Unit filename="src/bullet.cpp" />
-		<Unit filename="src/bullets/pbullet.cpp" />
-		<Unit filename="src/enemy.cpp" />
-		<Unit filename="src/enemyManager.cpp" />
-		<Unit filename="src/player.cpp" />
-		<Unit filename="src/playerManager.cpp" />
+		<Unit filename="src/space_invaders/bullet.cpp" />
+		<Unit filename="src/space_invaders/bullets/pbullet.cpp" />
+		<Unit filename="src/space_invaders/enemy.cpp" />
+		<Unit filename="src/space_invaders/enemyManager.cpp" />
+		<Unit filename="src/space_invaders/player.cpp" />
+		<Unit filename="src/space_invaders/playerManager.cpp" />
 		<Unit filename="src/tetrisGameManager.cpp" />
 		<Extensions>
 			<code_completion />

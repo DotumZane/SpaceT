@@ -1,12 +1,12 @@
 #ifndef TETRISGAMEMANAGER_H
 #define TETRISGAMEMANAGER_H
-#include <chrono>
-#include <array>
+#include <tetrisEnums.hpp>
+#include <tetrisMovableShape.h>
 #include "main.h"
 #include <SFML/System/Vector2.hpp>
 namespace sf
 {
-    class RenderWindow;
+class RenderWindow;
 }
 
 /*
@@ -18,6 +18,7 @@ namespace sf
 */
 class tetrisGameManager
 {
+    friend class tetrisMovableShape;
 public:
     //group: public Constructors
 
@@ -28,23 +29,9 @@ public:
     tetrisGameManager();
     // group: public type
 
-     /// recommend to use enum class for type safety purpose
+    /// recommend to use enum class for type safety purpose
     /// needs to include what shape creates from color
-    /*
-        Enum: BlockColors
-            the block colors that exist
-    */
-    enum BlockColors
-    {
-        Empty,
-        Cyan,
-        Yellow,
-        Orange,
-        Blue,
-        Green,
-        Red,
-        Purple
-    };
+
 
     //group: public
     /*
@@ -59,36 +46,8 @@ public:
             window(1) the window the manager will draw on
     */
     void updateGrid(sf::RenderWindow& window);
-    /*
-        Function: createRandomNormBlock
-            create a random Normal shape on screen.
 
-            when a shape needs to be created
-            on the tetris game. call this function
-            to create a random normal block on the
-            screen.
-
-        Warning:
-            this function should only be called when
-            the currentBlock has been destroyed.
-
-    */
-    void createRandomNormBlock(void);
-    /*
-        Function: createBlock(BlockColors)
-            create a shape based on color.
-
-        Parameters:
-            status(1)
-                status is the color of which the
-                shape is based on;
-
-        See Also:
-            <createRandomNormBlock>
-
-    */
-    void createBlock(BlockColors status);
-     //group: public static
+    //group: public static
     /*
         Function: getTetrisGameSize
             get the size of gameboard.
@@ -113,36 +72,18 @@ public:
 private:
     const static int blockGridSize_Y = 24;
     const static int blockGridSize_X = 10;
-    const static int sizeOfBiggestPiece = 4;
     //the thickness of the
     const static int borderThickness = 5;
 
-    /// the following enum uses the url below as refernce
-    /// http://mercurymasterpunk.ca/images/tetris.jpg
-    enum class BlockShapes
-    {
-        I_shape,
-        J_shape,
-        L_shape,
-        O_shape,
-        Z_shape,
-        T_shape,
-        S_shape
-        /// basic shapes
-    };
 
-    BlockColors currentBlock;
+
+
 
     int blockGrid[blockGridSize_X][blockGridSize_Y];
-    /// movingx and movingy contain points on grid the system is
-    /// cords(movingx[numBlock],movingy[numBlock]) == the cords for numBlock
-    std::array<int,sizeOfBiggestPiece> movingx; /// need to use more flexible system.
-    std::array<int,sizeOfBiggestPiece> movingy; /// for loops are to be used to access the arrays
     bool gameOver; /// needs to a way to signal game over conditon met
-    bool horizontalCooldown;
-    bool verticalCooldown;
-    std::chrono::time_point<std::chrono::system_clock> end_time;
-    void moveBlock(BlockColors status);
+    tetrisMovableShape playingShape;
+
+    void moveBlock(void);
     void drawGrid(sf::RenderWindow& window);
     void checkLines();
     bool checkLoseCondition();

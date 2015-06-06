@@ -70,7 +70,7 @@ private:
     const textureManager& images;
     std::list<pBullet> playerBullets;
     const sf::FloatRect screenComp;
-    std::chrono::time_point<std::chrono::system_clock> lastShotTime;
+
 };
 
 #endif // PLAYERMANGER_H

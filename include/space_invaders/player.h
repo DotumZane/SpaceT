@@ -36,6 +36,16 @@ public:
     */
 
     void keyMovement(const sf::FloatRect& screenSize);
+    /*
+        Function: shotBullet
+            test if player will shoot bullet.
+
+        Return:
+            willShoot
+            true: ok to shoot bullet
+            false: don't shoot bullet.
+    */
+    bool shootBullet(void);
 
     // Function: getLives()
     // get the lives of player
@@ -73,10 +83,9 @@ public:
 protected:
 private:
     //group: private
-
-
      sf::Sprite sprite; //!< Member variable "boundingRect"
     unsigned int lives; //!< Member variable "lives"
+    std::chrono::time_point<std::chrono::system_clock> lastShotTime;
 };
 
 #endif // PLAYER_H

@@ -48,24 +48,15 @@ void playerManager::checkSides()
 }
 void playerManager::KeyEvents(void)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->lastShotTime < std::chrono::system_clock::now())
+    // test if it is ok to shoot.
+    if(thePlayer.shootBullet())
     {
         pBullet Nbullet(images.getTexture("bullet.png"),
                         thePlayer.getSprite().getPosition());
-        playerBullets.push_back(Nbullet);
-         this->lastShotTime = std::chrono::system_clock::now() + std::chrono::milliseconds(500);
+        this->playerBullets.push_back(Nbullet);
+
     }
 
-     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        thePlayer.move(moveSpeed);
-    }
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
-        // dont draw outside screen Rect.
-        if(thePlayer.getSprite().getPosition(). x - moveSpeed > screenComp.left)
-        thePlayer.move(-1.0f*moveSpeed); // go left
-    }
+     this->thePlayer.keyMovement(this->screenComp);
 }
 

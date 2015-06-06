@@ -68,7 +68,7 @@
 		<Unit filename="include/tetrisMovableShape.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/space_invaders/bullet.cpp" />
-		<Unit filename="src/space_invaders/bullets/pbullet.cpp" />
+		<Unit filename="src/space_invaders/bullets/pBullet.cpp" />
 		<Unit filename="src/space_invaders/enemy.cpp" />
 		<Unit filename="src/space_invaders/enemyManager.cpp" />
 		<Unit filename="src/space_invaders/player.cpp" />

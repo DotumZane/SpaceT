@@ -3,14 +3,14 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "main.h"
 #include <space_invaders/textureManager.h>
-
+const static float moveSpeed = 4.0f;
 playerManager::playerManager(const textureManager& images,sf::FloatRect screenComp) :
     thePlayer(3,images.getTexture("player.png"),
             sf::Vector2f(screenComp.left,(screenComp.height + screenComp.top)- player::sizeOfPLayerSides)) ,
     images(images) ,
     screenComp(screenComp)
 {
-    //ctor
+
 }
 void playerManager::drawItems(sf::RenderWindow& app)
 {
@@ -56,16 +56,16 @@ void playerManager::KeyEvents(void)
          this->lastShotTime = std::chrono::system_clock::now() + std::chrono::milliseconds(500);
     }
 
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        thePlayer.move(4.0f);
+        thePlayer.move(moveSpeed);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        if(thePlayer.getSprite().getPosition(). x - 4 > screenComp.left)
-        thePlayer.move(-4.0f);
+        // dont draw outside screen Rect.
+        if(thePlayer.getSprite().getPosition(). x - moveSpeed > screenComp.left)
+        thePlayer.move(-1.0f*moveSpeed); // go left
     }
 }
 

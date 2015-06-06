@@ -14,7 +14,7 @@
 tetrisGameManager::tetrisGameManager() : gameOver(false), playingShape(*this)
 {
     ///reset the entire block grid to none
-    for(int x = 0; x < tetrisGameManager::blockGridSize_Y; x++)
+    for(int x = 0; x < tetrisGameManager::blockGridSize_X; x++)
     {
         for(int y = 0; y < tetrisGameManager::blockGridSize_Y; y++)
         {

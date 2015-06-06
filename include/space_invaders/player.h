@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Keyboard.hpp>
 // TODO (jadon#1#): moves only long the x axis ...
 //create function to do that
 /*
@@ -24,8 +25,18 @@ public:
             pos(3) - position to place player
     */
     player(int lives,const sf::Texture&,const sf::Vector2f& pos);
-    /** Default destructor */
-    virtual ~player();
+    /*
+        function:keyMovement
+            this functions reacts
+            to when keys are being
+
+        Parameters:
+            screenSize(1) represents the screenrect
+            the player may not draw it self out of.
+    */
+
+    void keyMovement(const sf::FloatRect& screenSize);
+
     // Function: getLives()
     // get the lives of player
     inline unsigned int Getlives()
@@ -38,12 +49,7 @@ public:
     {
         lives -= 1;
     }
-    // Function: move(float)
-    // move the player across along the x axis
-    inline void move(float x)
-    {
-        this->sprite.move(sf::Vector2f(x,0));
-    }
+
     // Function: getSprite()
     // get the sprite
     inline const sf::Sprite& getSprite()
@@ -57,9 +63,17 @@ public:
             varible is the length of player image
             in pixels for both x and y side..
     */
+    // Function: move(float)
+    // move the player across along the x axis
+    inline void move(float x)
+    {
+        this->sprite.move(sf::Vector2f(x,0));
+    }
      constexpr static float sizeOfPLayerSides = 50.0f;
 protected:
 private:
+    //group: private
+
 
      sf::Sprite sprite; //!< Member variable "boundingRect"
     unsigned int lives; //!< Member variable "lives"

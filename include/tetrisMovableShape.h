@@ -1,21 +1,48 @@
 #ifndef TETRISMOVABLESHAPE_H
 #define TETRISMOVABLESHAPE_H
 #include <array>
-#include <tetrisEnums.hpp>
 #include <chrono>
+#include <tetrisEnums.hpp>
 class tetrisGameManager;
 /*
     class: tetrisMovableShape
         the current active shape is reprensened by this
         class
 
-    See Also:
+    cyclic reference:
         <tetrisGameManager>
+
+    Depends on:
+        std::array
+        std::chrono
+        sf::keyBoard
+        <BlockShapes>
+
 */
 class tetrisMovableShape
 {
 public:
+// group: public constructors
+    /*
+        constructor: tetrisMovableShape(tetrisGameManager&)
+                setup the tetrisMovableShape with
+                tetris GameManager.
+
+        Parameters:
+            gameMan(1)
+            this class requires accessing a tetrisGameManager
+            blockGrid. to use <move> method below.
+
+    */
     tetrisMovableShape(tetrisGameManager&);
+//group: public methods
+    /*
+        Function: move
+            move current shape based on keyBoard input
+
+        the current implementation
+        uses arrow keys for input.
+    */
     void move();
       /*
         Function: createBlock(BlockColors)

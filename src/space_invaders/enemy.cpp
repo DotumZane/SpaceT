@@ -13,10 +13,10 @@ void enemy::logic(void)
 {
     //MOVEMENT CODE
     {
+        // do i move left or right?
         if(dir::Right == this->dirGoing)
         {
             this->sprite.move(passiveMoving,0.0f);
-
         }
         else if(dir::Left == this->dirGoing)
         {
@@ -25,6 +25,7 @@ void enemy::logic(void)
     }
     //change direction
     {
+        // do i need to change what direction i am going
         if(this->sprite.getPosition().x > (this->initPos.x + rangePassiveMov) )
         {
             this->dirGoing = dir::Left;

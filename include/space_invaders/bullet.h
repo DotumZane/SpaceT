@@ -5,8 +5,17 @@
     Class: bullet
         generic bullet class
         not useful for player or enemy
+    note:
+        this class is 90% header only.
 
-    Children:
+    todo:
+        merge any all properties
+        of this class with pbullet.
+
+    Depends on:
+        sf::sprite
+
+    inherited by:
         <pBullet>
 */
 class bullet

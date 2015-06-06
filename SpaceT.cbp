@@ -63,7 +63,10 @@
 		<Unit filename="include/space_invaders/player.h" />
 		<Unit filename="include/space_invaders/playerManager.hpp" />
 		<Unit filename="include/space_invaders/textureManager.h" />
+		<Unit filename="include/tetrisEnums.hpp" />
 		<Unit filename="include/tetrisGameManager.h" />
+		<Unit filename="include/tetrisMovableShape.h" />
+		<Unit filename="main.cpp" />
 		<Unit filename="src/space_invaders/bullet.cpp" />
 		<Unit filename="src/space_invaders/bullets/pbullet.cpp" />
 		<Unit filename="src/space_invaders/enemy.cpp" />
@@ -71,6 +74,7 @@
 		<Unit filename="src/space_invaders/player.cpp" />
 		<Unit filename="src/space_invaders/playerManager.cpp" />
 		<Unit filename="src/tetrisGameManager.cpp" />
+		<Unit filename="src/tetrisMovableShape.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

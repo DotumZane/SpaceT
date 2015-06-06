@@ -13,8 +13,15 @@ class RenderWindow;
     Class: tetrisGameManager
 
         this classes handless
- everything to deal with tetris game side
- currently being worked on.
+    everything to deal with tetris game side
+    currently being worked on.
+
+    cyclic refernces:
+        tetrisMovable - current used as owner.
+
+    Depends on:
+        <tetrisMovable>
+
 */
 class tetrisGameManager
 {
@@ -27,12 +34,6 @@ public:
             basic construction of game manager
     */
     tetrisGameManager();
-    // group: public type
-
-    /// recommend to use enum class for type safety purpose
-    /// needs to include what shape creates from color
-
-
     //group: public
     /*
         Function: updateGrid(sf::RenderWindow)
@@ -76,14 +77,9 @@ private:
     const static int borderThickness = 5;
 
 
-
-
-
     int blockGrid[blockGridSize_X][blockGridSize_Y];
     bool gameOver; /// needs to a way to signal game over conditon met
     tetrisMovableShape playingShape;
-
-    void moveBlock(void);
     void drawGrid(sf::RenderWindow& window);
     void checkLines();
     bool checkLoseCondition();

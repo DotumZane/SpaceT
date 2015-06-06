@@ -14,9 +14,9 @@
 tetrisGameManager::tetrisGameManager() : gameOver(false), playingShape(*this)
 {
     ///reset the entire block grid to none
-    for(int x = 0; x < 10; x++)
+    for(int x = 0; x < tetrisGameManager::blockGridSize_Y; x++)
     {
-        for(int y = 0; y < 24; y++)
+        for(int y = 0; y < tetrisGameManager::blockGridSize_Y; y++)
         {
             blockGrid[x][y] = Empty;
         }
@@ -25,8 +25,6 @@ tetrisGameManager::tetrisGameManager() : gameOver(false), playingShape(*this)
     /// create a inital start piece
     this->playingShape.createBlock(Red);
 }
-/// function needs a little explanation
-/// why are we returning a boolean?
 void tetrisGameManager::checkLines()
 {
 
@@ -77,8 +75,9 @@ void tetrisGameManager::drawGrid(sf::RenderWindow& window)
     {
         for(int y = 0; y < blockGridSize_Y; y++)
         {
-            /// i have no idea how you get this calculation
-            block.setPosition(x * (blockSizeFull) + borderThickness, y * (blockSizeFull) + borderThickness);
+            // apply the padding offset and then calculate the distance of block form screen.
+            block.setPosition((x * blockSizeFull) + borderThickness,
+                                    y * (blockSizeFull) + borderThickness);
             switch(blockGrid[x][y])
             {
             case Empty:
@@ -125,6 +124,6 @@ void tetrisGameManager::updateGrid(sf::RenderWindow& window)
     this->playingShape.move();
     this->checkLines();
     if(this->checkLoseCondition())
-        this->gameOver = true;
+        this->gameOver = true; // game over signal needs to be invoked.
     this->drawGrid(window);
 }

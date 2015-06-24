@@ -5,7 +5,7 @@ player::player(int lives,const sf::Texture& texture,const sf::Vector2f& pos) : s
 {
     this->sprite.setPosition(pos);
 }
-void player::shootBullet(void)
+bool player::shootBullet(void)
 {
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->lastShotTime < std::chrono::system_clock::now())
     {
